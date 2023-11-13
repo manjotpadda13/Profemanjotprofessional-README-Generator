@@ -8,7 +8,7 @@ function renderLicenseBadge(license) {
   } else {
     return ' ';
   }
-
+5
 }
 
 
