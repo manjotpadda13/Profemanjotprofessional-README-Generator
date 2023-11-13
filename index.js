@@ -1,163 +1,90 @@
 // TODO: Include packages needed for this application
-const inquirer = require('inquirer');
-const generateMarkdown = require('./utils/generateMarkdown.js');
-const fs = require('fs');
+const inquirer = require("inquirer");
+const fs = require("fs");
+
 
 
 
 
 // TODO: Create an array of questions for user input
-const questions = [
-    {
-        type: 'input',
-        name: 'title',
-        message: 'What is the title of your project? (Required)',
-        validate: titleInput => {
-            if (titleInput) {
-                return true;
-            } else {
-                console.log('Please enter your title!');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'githubUsername',
-        message: 'What is your GitHub Username? (Required)',
-        validate: githubInput => {
-            if (githubInput) {
-                return true;
-            } else {
-                console.log('Please enter your GitHub username!');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'email',
-        message: 'What is your email address? (Required)',
-        validate: githubInput => {
-            if (githubInput) {
-                return true;
-            } else {
-                console.log('Please enter your email address!');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'what',
-        message: 'What is your project and what problem will it solve? (Required)',
-        validate: whatInput => {
-            if (whatInput) {
-                return true;
-            } else {
-                console.log('Please enter what your project is!');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'why',
-        message: 'Why did you create this project? (Required)',
-        validate: whyInput => {
-            if (whyInput) {
-                return true;
-            } else {
-                console.log('Please enter why you created this project!');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'how',
-        message: 'How will someone use this? (Required)',
-        validate: howInput => {
-            if (howInput) {
-                return true;
-            } else {
-                console.log('Please enter what your project is!');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'installation',
-        message: 'Please provide step-by-step installation instructions for your project. (Required)',
-        validate: installInput => {
-            if (installInput) {
-                return true;
-            } else {
-                console.log('Please enter your installation instructions!');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'usage',
-        message: 'Please provide instructions and examples for use. (Required)',
-        validate: usageInput => {
-            if (usageInput) {
-                return true;
-            } else {
-                console.log('Please enter your use instructions!');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'list',
-        name: 'license',
-        message: 'Which license will you use for your project?',
-        choices: ['agpl', 'apache', 'mit', 'no license']
-    },
-    {
-        type: 'confirm',
-        name: 'confirmContributers',
-        message: 'Would you like to allow other developers to contribute?',
-        default: true
-    },
-    {
-        type: 'input',
-        name: 'contribute',
-        message: 'Please provide guidelines for contributing. (Required)',
-        when: ({ confirmContributers }) => {
-            if (confirmContributers) {
-                return true;
-            } else {
-                return false;
-            }
+function init() {
+    inquirer
+      .prompt([
+        // User name input
+        {
+          type: "input",
+          message: "What is your name?",
+          name: "name",
         },
-        validate: contributerInput => {
-            if (contributerInput) {
-                return true;
-            } else {
-                console.log('Please enter contributer guidelines!');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'test',
-        message: 'Please provide instructions on how to test the app. (Required)',
-        validate: testInput => {
-            if (testInput) {
-                return true;
-            } else {
-                console.log('Please enter your use test instructions!');
-                return false;
-            }
-        }
+        // User README title input
+        {
+          type: "input",
+          message: "What is the title of your project?",
+          name: "title",
+        },
+        // User README description input
+        {
+          type: "input",
+          message: "Add the description of your project:",
+          name: "description",
+        },
+        // User README installation instructions input
+        {
+          type: "input",
+          message: "Add the installation instructions of your project:",
+          name: "installation",
+        },
+        // User README usage information input
+        {
+          type: "input",
+          message: "Add the usage information of your project:",
+          name: "usage",
+        },
+        // User README contribution guidelines input
+        {
+          type: "input",
+          message: "Add the contribution guidelines of your project:",
+          name: "contribution",
+        },
+        // User README test instructions input
+        {
+          type: "input",
+          message: "Add the test instructions of your project:",
+          name: "test",
+        },
+        // User README licensing options
+        {
+          type: "list",
+          message: "Select the type of license you would like for your project:",
+          choices: [
+            "MIT",
+            "Apache 2.0 License",
+            "IBM Public License Version 1.0",
+            "Mozilla Public License 2.0",
+            "The Unlicense",
+          ],
+          name: "license",
+        },
+        // User github handle input
+        {
+          type: "input",
+          message: "What is your GitHub handle?",
+          name: "github",
+        },
+        // User email handle input
+        {
+          type: "input",
+          message: "What is your email?",
+          name: "email",
+        },
+      ])
+      // .then takes the user inputs from the prompts answered above and injects them into the writeToFile function, therefore generating a "sample-README.md" file with the users inputs
+      .then((data) => {
+        writeToFile("sample-README.md", data);
+      });
     }
-];
+
+ 
 
     
    
@@ -165,51 +92,73 @@ const questions = [
 
 
 // TODO: Create a function to write README file
-const writeFile = fileContent => {
-    return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/generated-README.md', fileContent, err => {
-            if (err) {
-                reject(err);
-                return;
-            }
+function writeToFile(fileName, data) {
+    var fileText = "";
+    // Users name
+    fileText += `${data.name}'s README\n\n`;
+    // Users README title
+    fileText += ` # ${data.title}\n\n`;
+    // Licensing badge
+    fileText += `${generateLicense(data.license)}\n\n`;
+    // Table of contents
+    fileText += `## Table of Contents\n\n`;
+    // Links to sections within the table of contents
+    fileText += ` * [Description](#description)\n\n * [Installation](#installation)\n\n * [Usage-Information](#usage-information)\n\n * Contribution-Guidelines](#contribution-guidelines)\n\n * [Test-Instructions](#test-instructions)\n\n * [License](#license)\n\n * [Questions](#questions)\n\n`;
+    // Description section
+  fileText += `## Description\n\n${data.description}\n\n`;
+  // Installation section
+  fileText += `## Installation\n\n${data.installation}\n\n`;
+  // Usage information section
+  fileText += `## Usage Information\n\n${data.usage}\n\n`;
+  // Contribution guidelines section
+  fileText += `## Contribution Guidelines\n\n${data.contribution}\n\n`;
+  // Test instructions section
+  fileText += `## Test Instructions\n\n${data.test}\n\n`;
+  // License section (complete with NOTICE)
+  fileText += `## License\n\nNOTICE: This application is covered under the ${data.license}\n\n`;
+  // Questions section
+  fileText += `## Questions\n\nHave additional questions? Click the links below to reach me through my GitHub account or Email address.\n\n`;
+  // Link to users GitHub
+  fileText += `[Link to Github](https://github.com/${data.github})\n\n`;
+  // Link to users email
+  fileText += `<a href="mailto:${data.email}">${data.email}</a>\n\n`;
+  // Utilizing the file system write file method to generate the users README.md doc along with error handling, that tells the user "Success!" within the terminal when README is successfully generated or logs any errors to the console
+  fs.writeFile(fileName, fileText, (err) =>
+    err ? console.error(err) : console.log("Success!")
+  );
+}
 
-            resolve({
-                ok: true,
-                message: 'File created!'
-            });
-        });
-    });
-};
-
+// This function handles the licensing badges
+function generateLicense(license) {
+    // MIT License
+    if (license === "MIT") {
+      return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`;
+      // Apache 2.0 License
+    } else if (license === "Apache 2.0 License") {
+      return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`;
+      // IBM Public License Version 1.0
+    } else if (license === "IBM Public License Version 1.0") {
+      return `[![License: IPL 1.0](https://img.shields.io/badge/License-IPL_1.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)`;
+      // Mozilla Public License 2.0
+    } else if (license === "Mozilla Public License 2.0") {
+      return `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`;
+      // Unlicense
+    } else {
+      return `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)`;
+    }
+  }
 
 
 
 
 
 // Function call to initialize app
-const init = () => {
 
-    return inquirer.prompt(questions)
-    .then(readmeData => {
-        return readmeData;
-    })
-}
+init();
 
 
-init()
-.then(readmeData => {
-    console.log(readmeData);
-    return generateMarkdown(readmeData);
-})
-.then(pageMD => {
-    return writeFile(pageMD);
-})
-.then(writeFileResponse => {
-    console.log(writeFileResponse.message);
-})
-.catch(err => {
-    console.log(err);
-})
+
+
 
 
         
