@@ -1,13 +1,23 @@
 {
-  "name": "static-site",
+  "name": "challenge-9-professional-readme-generator",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
 
-  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manjotpadda13/Profemanjotprofessional-README-Generator/tree/main"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manjotpadda13/Profemanjotprofessional-README-Generator/tree/main"
+  },
+  "homepage": "https://github.com/manjotpadda13/Profemanjotprofessional-README-Generator/tree/main",
   "dependencies": {
-    "inquirer": "6.5.2"
+    "inquirer": "^8.1.1"
   }
 }

@@ -50,14 +50,13 @@ function generateMarkdown(data) {
   return `
   # ${data.title}
 
-  ${renderLicenseBadge(data.license)}
+  
 
   ## Table-of-Contents
 
   * [Description](#description)
   * [Installation](#installation)
   * [Usage](#usage)
-  ${renderLicenseTOC(data.license)}
   * [Contributing](#contributing)
   * [Tests](#tests)
   * [Questions](#questions)
@@ -82,11 +81,11 @@ function generateMarkdown(data) {
   
   [Mark Down Tutorial](https://agea.github.io/tutorial.md/)
   
-  ${renderLicenseSection(data.license)}
+
 
   ## [Contributing](#table-of-contents)
   
-  ${renderContributingSection(data.confirmContributers, data.contribute)}
+
 
   ## [Tests](#table-of-contents)
 
