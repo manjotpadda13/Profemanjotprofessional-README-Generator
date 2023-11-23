@@ -61,6 +61,9 @@ THEN I am taken to the corresponding section of the README
 ## Walkthrough video 
 
 
+<<<<<<< HEAD
 
 
 ## Screenshots 
+=======
+>>>>>>> e773542b5d0a10d2014eae59b30dad3a494c63dc
