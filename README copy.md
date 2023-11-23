@@ -1,4 +1,4 @@
-# 09 Node.js Challenge: Professional README Generator
+# Manjot's Professional README Generator
 
 ## Your Task
 
@@ -58,9 +58,11 @@ THEN I am taken to the corresponding section of the README
 
 
 
-## Walkthrough video 
-
-
-
 
 ## Screenshots 
+
+<img width="1440" alt="Screen Shot 2023-11-22 at 4 05 55 PM" src="https://github.com/manjotpadda13/Profemanjotprofessional-README-Generator/assets/79305241/976ba98f-fd90-4bd3-8803-4a56ad5cd893">
+
+<img width="1440" alt="Screen Shot 2023-11-22 at 4 09 19 PM" src="https://github.com/manjotpadda13/Profemanjotprofessional-README-Generator/assets/79305241/1e062639-5659-4bdd-bf30-6afcc9e7f50a">
+<img width="1440" alt="Screen Shot 2023-11-22 at 4 06 01 PM" src="https://github.com/manjotpadda13/Profemanjotprofessional-README-Generator/assets/79305241/250e4b49-5e97-4397-b25b-c3da574c2885">
+
