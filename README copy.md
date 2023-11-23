@@ -46,17 +46,13 @@ THEN I am taken to the corresponding section of the README
 ```
 
 
+## Description
+My project is a README generator. The project will help a user generate a README without having to worry about applying proper mark down syntax.This README generator will allow the user to answer a series of specific questions and create a professional complete README based on their responses. It will take a couple minutes and provide the developer with the ability to make their project complete and more professional.
+
+
 
 ## Usage
-
-
-
-
-
-## Functionality
-
-
-
+After installation is complete, run the following code: ‘node inex.js’ in the terminal. Answer the prompts and after completion, you should see a console log showing your answers to your prompts, a message that says ‘File created!’,
 
 
 ## Screenshots 
@@ -65,4 +61,17 @@ THEN I am taken to the corresponding section of the README
 
 <img width="1440" alt="Screen Shot 2023-11-22 at 4 09 19 PM" src="https://github.com/manjotpadda13/Profemanjotprofessional-README-Generator/assets/79305241/1e062639-5659-4bdd-bf30-6afcc9e7f50a">
 <img width="1440" alt="Screen Shot 2023-11-22 at 4 06 01 PM" src="https://github.com/manjotpadda13/Profemanjotprofessional-README-Generator/assets/79305241/250e4b49-5e97-4397-b25b-c3da574c2885">
+
+
+
+
+
+
+
+
+
+
+
+
+
 
